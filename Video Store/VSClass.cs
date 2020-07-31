@@ -108,7 +108,7 @@ namespace Video_Store
             return customer;
         }
 
-        // Method        
+        // Method for deleting customer
 
         public DataTable deletecustomer(string newCustID)
         {
@@ -125,7 +125,7 @@ namespace Video_Store
             return customer;
 
         }
-        // Method for movies    
+        // Method for showing movies 
         public DataTable showmovies()
         {
             DataTable movies = CreateTable2();
@@ -174,7 +174,7 @@ namespace Video_Store
             con.Close();
             return movies;
         }
-        // Method - Add movie
+        // Method - Add a movie
         public DataTable addmovies(string newMTitle, string newMGenre, string newMCost, string newMRating)
         {
 
@@ -224,7 +224,22 @@ namespace Video_Store
             movies = ReadData2(movies);
             return movies;
         }
+        // Method for deleting movie
 
+        public DataTable deletemovies(string newMovieID)
+        {
+            con.Open();
+            string DeleteCommand = "Delete Movies where MovieID = @MovieID";
+            SqlCommand DeleteData = new SqlCommand(DeleteCommand, con);
+            DeleteData.Parameters.AddWithValue("@MovieID", newMovieID);
+
+            DeleteData.ExecuteNonQuery();
+            con.Close();
+
+            DataTable movies = CreateTable2();
+            movies = ReadData2(movies);
+            return movies;
+        }
 
         // Method        
         public DataTable showrented()

@@ -62,7 +62,7 @@ namespace Video_Store
                 MCost.Text = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
                 MGenre.Text = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
             }
-            
+
         }
         private void AddCBtn_Click(object sender, EventArgs e)
         {
@@ -134,15 +134,23 @@ namespace Video_Store
 
         private void DeleteCBtn_Click(object sender, EventArgs e)
         {
-
             vsclass.deletecustomer(CustID.Text);
 
             MessageBox.Show("Data has been Deleted !! ");
             dataGridView.DataSource = vsclass.showcustomer();
             data = "cust";
         }
+
+        private void DeleteMBtn_Click(object sender, EventArgs e)
+        {
+            vsclass.deletemovies(MovieID.Text);
+
+            MessageBox.Show("Data has been Deleted !! ");
+            dataGridView.DataSource = vsclass.showmovies();
+            data = "movie";
+        }
     }
-    
+
 }
 
 

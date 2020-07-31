@@ -115,6 +115,7 @@
             this.DeleteMBtn.TabIndex = 5;
             this.DeleteMBtn.Text = "Delete Movie";
             this.DeleteMBtn.UseVisualStyleBackColor = true;
+            this.DeleteMBtn.Click += new System.EventHandler(this.DeleteMBtn_Click);
             // 
             // UpdateMBtn
             // 
