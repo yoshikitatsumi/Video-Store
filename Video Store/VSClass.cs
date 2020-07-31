@@ -109,21 +109,19 @@ namespace Video_Store
         }
 
         // Method        
-        public DataTable deletecustomer()
-        {
-            DataTable customer = CreateTable();
-            customer = DeleteData(customer);
-            return customer;
-        }
-        private DataTable DeleteData(DataTable customer)
+
+        public DataTable deletecustomer(string newCustID)
         {
             con.Open();
-            string DeleteCommand = "Delete Customer where CustID = @ID";
+            string DeleteCommand = "Delete Customer where CustID = @CustID";
             SqlCommand DeleteData = new SqlCommand(DeleteCommand, con);
-
+            DeleteData.Parameters.AddWithValue("@CustID", newCustID);
 
             DeleteData.ExecuteNonQuery();
             con.Close();
+
+            DataTable customer = CreateTable();
+            customer = ReadData(customer);
             return customer;
 
         }

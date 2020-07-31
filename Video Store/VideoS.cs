@@ -34,7 +34,6 @@ namespace Video_Store
         private void RentalsBtn_Click(object sender, EventArgs e)
         {
             dataGridView.DataSource = vsclass.showrented();
-            data = "rented";
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -131,6 +130,16 @@ namespace Video_Store
             MessageBox.Show("Data has been Updated !! ");
             dataGridView.DataSource = vsclass.showmovies();
             data = "movie";
+        }
+
+        private void DeleteCBtn_Click(object sender, EventArgs e)
+        {
+
+            vsclass.deletecustomer(CustID.Text);
+
+            MessageBox.Show("Data has been Deleted !! ");
+            dataGridView.DataSource = vsclass.showcustomer();
+            data = "cust";
         }
     }
     

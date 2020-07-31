@@ -95,6 +95,7 @@
             this.DeleteCBtn.TabIndex = 3;
             this.DeleteCBtn.Text = "Delete Customer";
             this.DeleteCBtn.UseVisualStyleBackColor = true;
+            this.DeleteCBtn.Click += new System.EventHandler(this.DeleteCBtn_Click);
             // 
             // AddMBtn
             // 
