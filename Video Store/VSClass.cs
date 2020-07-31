@@ -38,7 +38,7 @@ namespace Video_Store
             customer.Columns.Add("Phone");
             // End of visual
             return customer;
-        }        
+        }
         private DataTable ReadData(DataTable customer)
         {
 
@@ -70,18 +70,18 @@ namespace Video_Store
             string NewCustomer = "INSERT INTO Customer (Firstname, Lastname, Address, Phone) VALUES (@Firstname, @Lastname, @Address, @Phone)";
 
             SqlCommand newdata = new SqlCommand(NewCustomer, con);
-                           
-                newdata.Parameters.AddWithValue("@Firstname", newCFName);
-                newdata.Parameters.AddWithValue("@Lastname", newCLName);
-                newdata.Parameters.AddWithValue("@Address", newCAddress);
-                newdata.Parameters.AddWithValue("@Phone", newCPhone);
 
-                con.Open(); //open a connection to the database
-                            //its a NONQuery as it doesn't return any data its only going up to the server
-                newdata.ExecuteNonQuery(); //Run the QueryCustomer
-                con.Close(); //Close a connection to the database
-                             //a happy message box
-            
+            newdata.Parameters.AddWithValue("@Firstname", newCFName);
+            newdata.Parameters.AddWithValue("@Lastname", newCLName);
+            newdata.Parameters.AddWithValue("@Address", newCAddress);
+            newdata.Parameters.AddWithValue("@Phone", newCPhone);
+
+            con.Open(); //open a connection to the database
+                        //its a NONQuery as it doesn't return any data its only going up to the server
+            newdata.ExecuteNonQuery(); //Run the QueryCustomer
+            con.Close(); //Close a connection to the database
+                         //a happy message box
+
             DataTable customer = CreateTable();
             customer = ReadData(customer);
             return customer;
@@ -138,7 +138,7 @@ namespace Video_Store
             // Our visual Data Base
             movies.Clear();
             movies.Columns.Add("MovieID");
-            movies.Columns.Add("Rating");            
+            movies.Columns.Add("Rating");
             movies.Columns.Add("Title");
             movies.Columns.Add("Year");
             movies.Columns.Add("Genre");
@@ -182,18 +182,18 @@ namespace Video_Store
             string NewMovies = "INSERT INTO Movies (Rating, Title, Rental_cost, Genre) VALUES (@Rating, @Title, @Rental_cost, @Genre)";
 
             SqlCommand newdata = new SqlCommand(NewMovies, con);
-            
-                newdata.Parameters.AddWithValue("@Title", newMTitle);
-                newdata.Parameters.AddWithValue("@Genre", newMGenre);
-                newdata.Parameters.AddWithValue("@Rental_cost", newMCost);
-                newdata.Parameters.AddWithValue("@Rating", newMRating);
 
-                con.Open(); //open a connection to the database
-                            //its a NONQuery as it doesn't return any data its only going up to the server
-                newdata.ExecuteNonQuery(); //Run the QueryCustomer
-                con.Close(); //Close a connection to the database
-                             //a happy message box
-            
+            newdata.Parameters.AddWithValue("@Title", newMTitle);
+            newdata.Parameters.AddWithValue("@Genre", newMGenre);
+            newdata.Parameters.AddWithValue("@Rental_cost", newMCost);
+            newdata.Parameters.AddWithValue("@Rating", newMRating);
+
+            con.Open(); //open a connection to the database
+                        //its a NONQuery as it doesn't return any data its only going up to the server
+            newdata.ExecuteNonQuery(); //Run the QueryCustomer
+            con.Close(); //Close a connection to the database
+                         //a happy message box
+
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
@@ -248,6 +248,19 @@ namespace Video_Store
             rented = ReadData3(rented);
             return rented;
         }
+        private DataTable CreateTable3()
+        {
+            DataTable rented = new DataTable();
+            // Our visual Data Base
+            rented.Clear();
+            rented.Columns.Add("RMID");
+            rented.Columns.Add("Title");
+            rented.Columns.Add("LastName");
+            rented.Columns.Add("DateRented");
+            rented.Columns.Add("DateReturned");
+            // End of visual
+            return rented;
+        }
         private DataTable ReadData3(DataTable rented)
         {
             con.Open();
@@ -269,20 +282,61 @@ namespace Video_Store
             return rented;
         }
 
-        // Method for rented   
-
-        private DataTable CreateTable3()
+        public DataTable showallrented()
         {
-            DataTable rented = new DataTable();
-            // Our visual Data Base
-            rented.Clear();
-            rented.Columns.Add("RMID");
-            rented.Columns.Add("Title");
-            rented.Columns.Add("LastName");
-            rented.Columns.Add("DateRented");
-            rented.Columns.Add("DateReturned");
-            // End of visual
-            return rented;
+            DataTable allrented = CreateTable3();
+            allrented = ReadData4(allrented);
+            return allrented;
+        }
+
+        private DataTable ReadData4(DataTable allrented)
+        {
+            con.Open();
+            string query = "Select RentedMovies.RMID, RentedMovies.MovieIDFK, RentedMovies.CustIDFK, RentedMovies.DateRented, RentedMovies.DateReturned, Movies.MovieID, Movies.Title, Customer.CustID, Customer.LastName from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID and RentedMovies.DateReturned is null order by RentedMovies.RMID";
+            SqlCommand command = new SqlCommand(query, con);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                allrented.Rows.Add(
+                    reader["RMID"],
+                    reader["Title"],
+                    reader["LastName"],
+                    reader["DateRented"],
+                    reader["DateReturned"]
+                    );
+            }
+            reader.Close();
+            con.Close();
+            return allrented;
+        }
+        public DataTable showunrented()
+        {
+            DataTable unrented = CreateTable3();
+            unrented = ReadData5(unrented);
+            return unrented;
+        }
+
+        private DataTable ReadData5(DataTable unrented)
+        {
+            con.Open();
+            string query = "Select RentedMovies.RMID, RentedMovies.MovieIDFK, RentedMovies.CustIDFK, RentedMovies.DateRented, RentedMovies.DateReturned, Movies.MovieID, Movies.Title, Customer.CustID, Customer.LastName from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID and RentedMovies.DateReturned is not null order by RentedMovies.RMID";
+            SqlCommand command = new SqlCommand(query, con);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                unrented.Rows.Add(
+                    reader["RMID"],
+                    reader["Title"],
+                    reader["LastName"],
+                    reader["DateRented"],
+                    reader["DateReturned"]
+                    );
+            }
+            reader.Close();
+            con.Close();
+            return unrented;
         }
     }
 }

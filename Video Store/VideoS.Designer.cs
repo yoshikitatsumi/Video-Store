@@ -222,6 +222,7 @@
             this.AllRBtn.TabStop = true;
             this.AllRBtn.Text = "All Rented";
             this.AllRBtn.UseVisualStyleBackColor = true;
+            this.AllRBtn.CheckedChanged += new System.EventHandler(this.AllRBtn_CheckedChanged);
             // 
             // OutRBtn
             // 
@@ -233,6 +234,7 @@
             this.OutRBtn.TabStop = true;
             this.OutRBtn.Text = "Out Rented";
             this.OutRBtn.UseVisualStyleBackColor = true;
+            this.OutRBtn.CheckedChanged += new System.EventHandler(this.OutRBtn_CheckedChanged);
             // 
             // groupBox1
             // 
