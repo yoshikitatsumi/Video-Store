@@ -63,6 +63,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.RMID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -137,6 +139,7 @@
             this.ReturnMBtn.TabIndex = 7;
             this.ReturnMBtn.Text = "Return Movie";
             this.ReturnMBtn.UseVisualStyleBackColor = true;
+            this.ReturnMBtn.Click += new System.EventHandler(this.ReturnMBtn_Click);
             // 
             // IssueMBtn
             // 
@@ -167,7 +170,7 @@
             // 
             this.CPhone.Location = new System.Drawing.Point(1003, 605);
             this.CPhone.Name = "CPhone";
-            this.CPhone.Size = new System.Drawing.Size(230, 22);
+            this.CPhone.Size = new System.Drawing.Size(209, 22);
             this.CPhone.TabIndex = 11;
             // 
             // MovieID
@@ -263,7 +266,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1487, 458);
+            this.dataGridView.Size = new System.Drawing.Size(1504, 458);
             this.dataGridView.TabIndex = 26;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
@@ -357,9 +360,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(735, 695);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 15);
+            this.label8.Size = new System.Drawing.Size(60, 15);
             this.label8.TabIndex = 37;
-            this.label8.Text = "Cost";
+            this.label8.Text = "Cost ($)";
             // 
             // label9
             // 
@@ -388,11 +391,29 @@
             this.label11.TabIndex = 40;
             this.label11.Text = "Movie ID";
             // 
+            // RMID
+            // 
+            this.RMID.Location = new System.Drawing.Point(1114, 670);
+            this.RMID.Name = "RMID";
+            this.RMID.Size = new System.Drawing.Size(95, 22);
+            this.RMID.TabIndex = 41;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1003, 673);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 15);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "RMID";
+            // 
             // VideoS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1592, 782);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.RMID);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -472,6 +493,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox RMID;
+        private System.Windows.Forms.Label label5;
     }
 }
 
