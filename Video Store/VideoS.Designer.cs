@@ -65,6 +65,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.RMID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.RentedPersonBtn = new System.Windows.Forms.RadioButton();
+            this.PopularVideoBtn = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -133,9 +135,9 @@
             // 
             this.ReturnMBtn.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ReturnMBtn.ForeColor = System.Drawing.Color.OliveDrab;
-            this.ReturnMBtn.Location = new System.Drawing.Point(1239, 555);
+            this.ReturnMBtn.Location = new System.Drawing.Point(1134, 555);
             this.ReturnMBtn.Name = "ReturnMBtn";
-            this.ReturnMBtn.Size = new System.Drawing.Size(145, 103);
+            this.ReturnMBtn.Size = new System.Drawing.Size(190, 72);
             this.ReturnMBtn.TabIndex = 7;
             this.ReturnMBtn.Text = "Return Movie";
             this.ReturnMBtn.UseVisualStyleBackColor = true;
@@ -145,9 +147,9 @@
             // 
             this.IssueMBtn.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.IssueMBtn.ForeColor = System.Drawing.Color.Red;
-            this.IssueMBtn.Location = new System.Drawing.Point(1404, 555);
+            this.IssueMBtn.Location = new System.Drawing.Point(1345, 555);
             this.IssueMBtn.Name = "IssueMBtn";
-            this.IssueMBtn.Size = new System.Drawing.Size(140, 103);
+            this.IssueMBtn.Size = new System.Drawing.Size(199, 72);
             this.IssueMBtn.TabIndex = 8;
             this.IssueMBtn.Text = "Issue Movie";
             this.IssueMBtn.UseVisualStyleBackColor = true;
@@ -170,7 +172,7 @@
             // 
             this.CPhone.Location = new System.Drawing.Point(1003, 605);
             this.CPhone.Name = "CPhone";
-            this.CPhone.Size = new System.Drawing.Size(209, 22);
+            this.CPhone.Size = new System.Drawing.Size(125, 22);
             this.CPhone.TabIndex = 11;
             // 
             // MovieID
@@ -205,7 +207,7 @@
             // 
             this.MRating.Location = new System.Drawing.Point(1006, 713);
             this.MRating.Name = "MRating";
-            this.MRating.Size = new System.Drawing.Size(206, 22);
+            this.MRating.Size = new System.Drawing.Size(122, 22);
             this.MRating.TabIndex = 17;
             // 
             // CFName
@@ -218,7 +220,7 @@
             // AllRBtn
             // 
             this.AllRBtn.AutoSize = true;
-            this.AllRBtn.Location = new System.Drawing.Point(20, 24);
+            this.AllRBtn.Location = new System.Drawing.Point(15, 32);
             this.AllRBtn.Name = "AllRBtn";
             this.AllRBtn.Size = new System.Drawing.Size(114, 23);
             this.AllRBtn.TabIndex = 19;
@@ -230,7 +232,7 @@
             // OutRBtn
             // 
             this.OutRBtn.AutoSize = true;
-            this.OutRBtn.Location = new System.Drawing.Point(165, 24);
+            this.OutRBtn.Location = new System.Drawing.Point(228, 32);
             this.OutRBtn.Name = "OutRBtn";
             this.OutRBtn.Size = new System.Drawing.Size(124, 23);
             this.OutRBtn.TabIndex = 20;
@@ -242,12 +244,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox1.Controls.Add(this.PopularVideoBtn);
+            this.groupBox1.Controls.Add(this.RentedPersonBtn);
             this.groupBox1.Controls.Add(this.AllRBtn);
             this.groupBox1.Controls.Add(this.OutRBtn);
             this.groupBox1.Font = new System.Drawing.Font("MS UI Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox1.Location = new System.Drawing.Point(1239, 675);
+            this.groupBox1.Location = new System.Drawing.Point(1134, 633);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 60);
+            this.groupBox1.Size = new System.Drawing.Size(410, 102);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rented Movies";
@@ -393,9 +397,9 @@
             // 
             // RMID
             // 
-            this.RMID.Location = new System.Drawing.Point(1114, 670);
+            this.RMID.Location = new System.Drawing.Point(1050, 670);
             this.RMID.Name = "RMID";
-            this.RMID.Size = new System.Drawing.Size(95, 22);
+            this.RMID.Size = new System.Drawing.Size(78, 22);
             this.RMID.TabIndex = 41;
             // 
             // label5
@@ -406,6 +410,29 @@
             this.label5.Size = new System.Drawing.Size(41, 15);
             this.label5.TabIndex = 42;
             this.label5.Text = "RMID";
+            // 
+            // RentedPersonBtn
+            // 
+            this.RentedPersonBtn.AutoSize = true;
+            this.RentedPersonBtn.Location = new System.Drawing.Point(15, 62);
+            this.RentedPersonBtn.Name = "RentedPersonBtn";
+            this.RentedPersonBtn.Size = new System.Drawing.Size(190, 23);
+            this.RentedPersonBtn.TabIndex = 21;
+            this.RentedPersonBtn.TabStop = true;
+            this.RentedPersonBtn.Text = "Most rented person";
+            this.RentedPersonBtn.UseVisualStyleBackColor = true;
+            this.RentedPersonBtn.CheckedChanged += new System.EventHandler(this.RentedPersonBtn_CheckedChanged);
+            // 
+            // PopularVideoBtn
+            // 
+            this.PopularVideoBtn.AutoSize = true;
+            this.PopularVideoBtn.Location = new System.Drawing.Point(228, 62);
+            this.PopularVideoBtn.Name = "PopularVideoBtn";
+            this.PopularVideoBtn.Size = new System.Drawing.Size(182, 23);
+            this.PopularVideoBtn.TabIndex = 22;
+            this.PopularVideoBtn.TabStop = true;
+            this.PopularVideoBtn.Text = "Most popular video";
+            this.PopularVideoBtn.UseVisualStyleBackColor = true;
             // 
             // VideoS
             // 
@@ -495,6 +522,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox RMID;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton PopularVideoBtn;
+        private System.Windows.Forms.RadioButton RentedPersonBtn;
     }
 }
 

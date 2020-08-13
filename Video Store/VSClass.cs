@@ -19,8 +19,8 @@ namespace Video_Store
             con = new SqlConnection(conString);
         }
 
-        // Method for showing customer
-        public DataTable showcustomer()
+        // Method for showing customer list
+        public DataTable showCustomer()
         {
             DataTable customer = CreateTable();
             customer = ReadData(customer);
@@ -41,7 +41,6 @@ namespace Video_Store
         }
         private DataTable ReadData(DataTable customer)
         {
-
             con.Open();
             string query = "Select * from Customer order by CustID";
             SqlCommand command = new SqlCommand(query, con);
@@ -55,39 +54,30 @@ namespace Video_Store
                     reader["Address"],
                     reader["Phone"]
                     );
-
             }
             reader.Close();
-
             con.Close();
             return customer;
         }
         // Method - Add customer
-        public DataTable addcustomer(string newCFName, string newCLName, string newCAddress, string newCPhone)
+        public DataTable addCustomer(string newCFName, string newCLName, string newCAddress, string newCPhone)
         {
-
             // this puts the parameters into the code so that the data in the text boxes is added to the database
             string NewCustomer = "INSERT INTO Customer (Firstname, Lastname, Address, Phone) VALUES (@Firstname, @Lastname, @Address, @Phone)";
-
             SqlCommand newdata = new SqlCommand(NewCustomer, con);
-
             newdata.Parameters.AddWithValue("@Firstname", newCFName);
             newdata.Parameters.AddWithValue("@Lastname", newCLName);
             newdata.Parameters.AddWithValue("@Address", newCAddress);
             newdata.Parameters.AddWithValue("@Phone", newCPhone);
-
             con.Open(); //open a connection to the database
-                        //its a NONQuery as it doesn't return any data its only going up to the server
             newdata.ExecuteNonQuery(); //Run the QueryCustomer
             con.Close(); //Close a connection to the database
-                         //a happy message box
-
             DataTable customer = CreateTable();
             customer = ReadData(customer);
             return customer;
         }
-        // Method - Update customer
-        public DataTable updatecustomer(string newCustID, string newCFName, string newCLName, string newCAddress, string newCPhone)
+        // Method - Update customer list
+        public DataTable updateCustomer(string newCustID, string newCFName, string newCLName, string newCAddress, string newCPhone)
         {
             //this updates existing data in the database where the ID of the data equals the ID in the text box
             string updatestatement = "UPDATE Customer set Firstname=@Firstname, Lastname=@Lastname, Address=@Address, Phone=@Phone where CustID = @CustID";
@@ -99,40 +89,34 @@ namespace Video_Store
             update.Parameters.AddWithValue("@Address", newCAddress);
             update.Parameters.AddWithValue("@Phone", newCPhone);
             con.Open();
-            //its NONQuery as data is only going up
             update.ExecuteNonQuery();
             con.Close();
-
             DataTable customer = CreateTable();
             customer = ReadData(customer);
             return customer;
         }
-
         // Method for deleting customer
-        public DataTable deletecustomer(string newCustID)
+        public DataTable deleteCustomer(string newCustID)
         {
             con.Open();
             string DeleteCommand = "Delete Customer where CustID = @CustID";
             SqlCommand DeleteData = new SqlCommand(DeleteCommand, con);
             DeleteData.Parameters.AddWithValue("@CustID", newCustID);
-
             DeleteData.ExecuteNonQuery();
             con.Close();
-
             DataTable customer = CreateTable();
             customer = ReadData(customer);
             return customer;
-
         }
-        // Method for showing movies 
-        public DataTable showmovies()
+        // Method for showing movie list
+        public DataTable showMovies()
         {
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
         }
-        // Method - reset movies
-        public DataTable resetmovies(string RMovieID, string RMYear, string MCopies, string MPlot, string RMTitle, string RMGenre, string MCost, string RMRating)
+        // Method - reset movies 
+        public DataTable resetMovies(string RMovieID, string RMYear, string MCopies, string MPlot, string RMTitle, string RMGenre, string MCost, string RMRating)
         {
             //this rest existing data in the database where the ID of the data equals the ID in the text box
             string resetstatement = "UPDATE Movies set Title=@Title, Year=@Year, Genre=@Genre, Rental_cost=@Rental_cost, Copies=@Copies, Plot=@Plot, Rating=@Rating where MovieID = @MovieID";
@@ -146,12 +130,9 @@ namespace Video_Store
             update.Parameters.AddWithValue("@Copies", MCopies);
             update.Parameters.AddWithValue("@Plot", MPlot);
             update.Parameters.AddWithValue("@Genre", RMGenre);
-
             con.Open();
-            //its NONQuery as data is only going up
             update.ExecuteNonQuery();
             con.Close();
-
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
@@ -170,7 +151,6 @@ namespace Video_Store
             movies.Columns.Add("Copies");
             movies.Columns.Add("Plot");
             // End of visual
-
             return movies;
         }
         private DataTable ReadData2(DataTable movies)
@@ -179,7 +159,6 @@ namespace Video_Store
             string query = "Select * from Movies order by MovieID";
             SqlCommand command = new SqlCommand(query, con);
             SqlDataReader reader = command.ExecuteReader();
-
             while (reader.Read())
             {
                 movies.Rows.Add(
@@ -191,7 +170,6 @@ namespace Video_Store
                     reader["Rental_Cost"],
                     reader["Copies"],
                     reader["Plot"]
-
                     );
             }
             reader.Close();
@@ -199,31 +177,24 @@ namespace Video_Store
             return movies;
         }
         // Method - Add a movie
-        public DataTable addmovies(string newMTitle, string newMGenre, string newMCost, string newMRating)
+        public DataTable addMovies(string newMTitle, string newMGenre, string newMCost, string newMRating)
         {
-
             // this puts the parameters into the code so that the data in the text boxes is added to the database
             string NewMovies = "INSERT INTO Movies (Rating, Title, Rental_cost, Genre) VALUES (@Rating, @Title, @Rental_cost, @Genre)";
-
             SqlCommand newdata = new SqlCommand(NewMovies, con);
-
             newdata.Parameters.AddWithValue("@Title", newMTitle);
             newdata.Parameters.AddWithValue("@Genre", newMGenre);
             newdata.Parameters.AddWithValue("@Rental_cost", newMCost);
             newdata.Parameters.AddWithValue("@Rating", newMRating);
-
             con.Open(); //open a connection to the database
-                        //its a NONQuery as it doesn't return any data its only going up to the server
             newdata.ExecuteNonQuery(); //Run the QueryCustomer
             con.Close(); //Close a connection to the database
-                         //a happy message box
-
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
         }
         // Method - Update movies
-        public DataTable updatemovies(string newMovieID, string newMYear, string newMCopies, string newMPlot, string newMTitle, string newMGenre, string newMCost, string newMRating)
+        public DataTable updateMovies(string newMovieID, string newMYear, string newMCopies, string newMPlot, string newMTitle, string newMGenre, string newMCost, string newMRating)
         {
             //this updates existing data in the database where the ID of the data equals the ID in the text box
             string updatestatement = "UPDATE Movies set Title=@Title, Year=@Year, Genre=@Genre, Rental_cost=@Rental_cost, Copies=@Copies, Plot=@Plot, Rating=@Rating where MovieID = @MovieID";
@@ -237,36 +208,28 @@ namespace Video_Store
             update.Parameters.AddWithValue("@Copies", newMCopies);
             update.Parameters.AddWithValue("@Plot", newMPlot);
             update.Parameters.AddWithValue("@Genre", newMGenre);
-
-
             con.Open();
-            //its NONQuery as data is only going up
             update.ExecuteNonQuery();
             con.Close();
-
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
         }
         // Method for deleting movie
-
-        public DataTable deletemovies(string newMovieID)
+        public DataTable deleteMovies(string newMovieID)
         {
             con.Open();
             string DeleteCommand = "Delete Movies where MovieID = @MovieID";
             SqlCommand DeleteData = new SqlCommand(DeleteCommand, con);
             DeleteData.Parameters.AddWithValue("@MovieID", newMovieID);
-
             DeleteData.ExecuteNonQuery();
             con.Close();
-
             DataTable movies = CreateTable2();
             movies = ReadData2(movies);
             return movies;
         }
-
-        // Method        
-        public DataTable showrented()
+        // Method for rented movies
+        public DataTable showRented()
         {
             DataTable rented = CreateTable3();
             rented = ReadData3(rented);
@@ -309,20 +272,17 @@ namespace Video_Store
             con.Close();
             return rented;
         }
-
-        public DataTable showoutrented()
+        public DataTable showAllrented()
         {
-            DataTable outrented = CreateTable3();
-            outrented = ReadData4(outrented);
-            return outrented;
+            DataTable allrented = CreateTable3();
+            allrented = ReadData4(allrented);
+            return allrented;
         }
-
         private DataTable ReadData4(DataTable outrented)
         {
             con.Open();
-            string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID and RentedMovies.DateReturned is null order by RentedMovies.RMID";
+            string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID and RentedMovies.DateReturned is not null order by RentedMovies.RMID";
             SqlCommand command = new SqlCommand(query, con);
-
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -340,49 +300,99 @@ namespace Video_Store
             con.Close();
             return outrented;
         }
-        public DataTable returnmovies(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
+        public DataTable showOutrented()
         {
-
+            DataTable outrented = CreateTable3();
+            outrented = ReadData5(outrented);
+            return outrented;
+        }
+        private DataTable ReadData5(DataTable outrented)
+        {
+            con.Open();
+            string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID and RentedMovies.DateReturned is null order by RentedMovies.RMID";
+            SqlCommand command = new SqlCommand(query, con);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                outrented.Rows.Add(
+                    reader["RMID"],
+                    reader["MovieID"],
+                    reader["Title"],
+                    reader["CustID"],
+                    reader["Rental_Cost"],
+                    reader["DateRented"],
+                    reader["DateReturned"]
+                    );
+            }
+            reader.Close();
+            con.Close();
+            return outrented;
+        }
+        // method for return movies
+        public DataTable returnMovies(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
+        {
             DataTable returned = CreateTable3();
-            returned = ReadData8(returned, ReturnMovieID, ReturnCustID, ReturnMovieIDFK, ReturnDateRented, NewDateReturned, newRMID);
+            returned = ReadData8(newRMID, ReturnMovieID, ReturnCustID, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
             return returned;
         }
-        private DataTable ReadData8(DataTable returned, string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
+        private DataTable ReadData8(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
         {
-
-            string query = "SELECT CURRENT_TIMESTAMP";
-            SqlConnection con = new SqlConnection(conString);
-
-            SqlCommand command = new SqlCommand(query, con);
             con.Open();
-            NewDateReturned = command.ExecuteScalar().ToString();
-
-
-
+            NewDateReturned = DateTime.Now.ToString();
             Console.WriteLine(NewDateReturned);
-            
             //this rest existing data in the database where the MovieID of the data equals the ID in the text box
-            string resetstatement = "UPDATE RentedMovies set RMID=@RMID, MovieIDFK=@MovieIDFK, CustIDFK=@CustIDFK, DateRented=@DateRented, DateReturned=@DateReturned where newRMID = @RMID";
+            string resetstatement = "UPDATE RentedMovies set MovieIDFK=@MovieIDFK, CustIDFK=@CustIDFK, DateRented=@DateRented, DateReturned=@DateReturned where RMID = @RMID";
             SqlCommand update = new SqlCommand(resetstatement, con);
-
-
             //create the parameters and pass the data from the textboxes
             update.Parameters.AddWithValue("@RMID", newRMID);
             update.Parameters.AddWithValue("@MovieIDFK", ReturnMovieIDFK);
             update.Parameters.AddWithValue("@CustIDFK", ReturnCustID);
             update.Parameters.AddWithValue("@DateRented", ReturnDateRented);
             update.Parameters.AddWithValue("@DateReturned", NewDateReturned);
-
-            
-            //its NONQuery as data is only going up
             update.ExecuteNonQuery();
             con.Close();
             DataTable rented = CreateTable3();
             rented = ReadData3(rented);
             return rented;
-
         }
+        // Method for rented movies
+        public DataTable rentedPerson()
+        {
+            DataTable rentedperson = CreateTable3();
+            rentedperson = ReadData9(rentedperson);
+            return rentedperson;
+        }
+        private DataTable ReadData9(DataTable rentedperson)
+        {
+            string queryString = "SELECT COUNT(ID) FROM RentedMovies where CustIDFK=@CustIDFK";
+            SqlConnection con = new SqlConnection(conString);
 
+            SqlCommand Command = new SqlCommand(queryString, con);
+            con.Open();
+            string rentedpersonID = Command.ExecuteScalar().ToString();
+
+            Console.WriteLine(rentedpersonID);
+            
+            string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID order by RentedMovies.RMID";
+            SqlCommand command = new SqlCommand(query, con);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rentedperson.Rows.Add(
+                    reader["RMID"],
+                    reader["MovieID"],
+                    reader["Title"],
+                    reader["CustID"],
+                    reader["Rental_Cost"],
+                    reader["DateRented"],
+                    reader["DateReturned"]
+                    );
+            }
+
+            reader.Close();
+            con.Close();
+            return rentedperson;
+        }
 
 
         /*        // Method - Issue a movie
@@ -478,5 +488,8 @@ namespace Video_Store
             movies = ReadData2(movies);
             return movies;
         }*/
+
 }
+
+
 

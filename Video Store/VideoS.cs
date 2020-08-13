@@ -18,34 +18,46 @@ namespace Video_Store
         public VideoS()
         {
             InitializeComponent();
+            // original button setting
+            ReturnMBtn.Enabled = false;
+            IssueMBtn.Enabled = false;
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void CustBtn_Click(object sender, EventArgs e)
         {
-            dataGridView.DataSource = vsclass.showcustomer();
+            // Show customer list
+            ReturnMBtn.Enabled = false;
+            IssueMBtn.Enabled = false;
+            dataGridView.DataSource = vsclass.showCustomer();
             data = "cust"; // gridview data to text boxes control
         }
 
         private void MoviesBtn_Click(object sender, EventArgs e)
         {
-            dataGridView.DataSource = vsclass.showmovies();
+            // Show movie list
+            ReturnMBtn.Enabled = false;
+            IssueMBtn.Enabled = false;
+            dataGridView.DataSource = vsclass.showMovies();
             data = "movie"; // gridview data to text boxes control
         }
 
         private void RentalsBtn_Click(object sender, EventArgs e)
         {
-            dataGridView.DataSource = vsclass.showrented();
-            data = "rented";
+            // Show rented movie list
+            ReturnMBtn.Enabled = true;
+            IssueMBtn.Enabled = true;
+            dataGridView.DataSource = vsclass.showRented();
+            data = "rented"; // gridview data to text boxes control
         }
-
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //show the data in the DGV in the text boxes
             string newvalue = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
             //show the output on the header
             this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+            // Customer list
             if (data == "cust")
             {
                 //pass data to the text boxes
@@ -56,6 +68,7 @@ namespace Video_Store
                 CPhone.Text = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
             }
+            // Movie list with price setting
             else if (data == "movie")
             {
                 // pass data to the text boxes
@@ -93,10 +106,12 @@ namespace Video_Store
                 {
                     MCost.Text = "5";
                 }
-                vsclass.resetmovies(RMovieID, RMYear, MCopies, MPlot, RMTitle, RMGenre, MCost.Text, RMRating);
+                vsclass.resetMovies(RMovieID, RMYear, MCopies, MPlot, RMTitle, RMGenre, MCost.Text, RMRating);
             }
+            // Rented movie list
             else if (data == "rented")
             {
+                //pass data to the text boxes
                 RMID.Text = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
                 MovieID.Text = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
                 MTitle.Text = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -106,71 +121,72 @@ namespace Video_Store
         }
         private void AllRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            dataGridView.DataSource = vsclass.showrented();
+            // Show all rented list
+            ReturnMBtn.Enabled = false;
+            IssueMBtn.Enabled = false;
+            dataGridView.DataSource = vsclass.showAllrented();
         }
         private void OutRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            dataGridView.DataSource = vsclass.showoutrented();
+            // Show out rented list
+            ReturnMBtn.Enabled = false;
+            IssueMBtn.Enabled = false;
+            dataGridView.DataSource = vsclass.showOutrented();
         }
         private void AddCBtn_Click(object sender, EventArgs e)
         {
+            // Add customer
             // setting variables to take new customer details
             string NewCFName = CFName.Text;
             string NewCLName = CLName.Text;
             string NewCAddress = CAddress.Text;
             string NewCPhone = CPhone.Text;
-
-            vsclass.addcustomer(CFName.Text, CLName.Text, CAddress.Text, CPhone.Text);
-
+            vsclass.addCustomer(CFName.Text, CLName.Text, CAddress.Text, CPhone.Text);
             MessageBox.Show("Data has been Inserted !! ");
             // showing customer list with addition
-            dataGridView.DataSource = vsclass.showcustomer();
+            dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
-
         private void AddMBtn_Click(object sender, EventArgs e)
         {
+            // Add movie
             // setting variables to take new movie details
             string NewMTitle = MTitle.Text;
             string NewMGenre = MGenre.Text;
             string NewMCost = MCost.Text;
             string NewMRating = MRating.Text;
-
-            vsclass.addmovies(MTitle.Text, MGenre.Text, MCost.Text, MRating.Text);
-
+            vsclass.addMovies(MTitle.Text, MGenre.Text, MCost.Text, MRating.Text);
             MessageBox.Show("Data has been Inserted !! ");
             // showing movie list with addition
-            dataGridView.DataSource = vsclass.showmovies();
+            dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
-
         private void UpdateCBtn_Click(object sender, EventArgs e)
         {
+            // Update customer
             // setting variables to take new customer details
             string NewCFName = CFName.Text;
             string NewCLName = CLName.Text;
             string NewCAddress = CAddress.Text;
             string NewCPhone = CPhone.Text;
-
-            vsclass.updatecustomer(CustID.Text, CFName.Text, CLName.Text, CAddress.Text, CPhone.Text);
-
+            vsclass.updateCustomer(CustID.Text, CFName.Text, CLName.Text, CAddress.Text, CPhone.Text);
             MessageBox.Show("Data has been Updated !! ");
             // showing customer list with update
-            dataGridView.DataSource = vsclass.showcustomer();
+            dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
-
         private void UpdateMBtn_Click(object sender, EventArgs e)
         {
+            // Update Movie
             // setting variables to take new movie details
             string NewMTitle = MTitle.Text;
             string NewMGenre = MGenre.Text;
@@ -184,38 +200,34 @@ namespace Video_Store
             NewMYear = dataGridView.Rows[NewMovieID].Cells[3].Value.ToString();
             NewMCopies = dataGridView.Rows[NewMovieID].Cells[5].Value.ToString();
             NewMPlot = dataGridView.Rows[NewMovieID].Cells[6].Value.ToString();
-
-            vsclass.updatemovies(MovieID.Text, NewMYear, NewMCopies, NewMPlot, MTitle.Text, MGenre.Text, MCost.Text, MRating.Text);
-
+            vsclass.updateMovies(MovieID.Text, NewMYear, NewMCopies, NewMPlot, MTitle.Text, MGenre.Text, MCost.Text, MRating.Text);
             MessageBox.Show("Data has been Updated !! ");
             // showing customer list with update
-            dataGridView.DataSource = vsclass.showmovies();
+            dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
-
         private void DeleteCBtn_Click(object sender, EventArgs e)
         {
-            vsclass.deletecustomer(CustID.Text);
-
+            // Delete customer
+            vsclass.deleteCustomer(CustID.Text);
             MessageBox.Show("Data has been Deleted !! ");
             // showing customer list after deleting
-            dataGridView.DataSource = vsclass.showcustomer();
+            dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
             MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
-
         private void DeleteMBtn_Click(object sender, EventArgs e)
         {
-            vsclass.deletemovies(MovieID.Text);
-
+            // Delet movie
+            vsclass.deleteMovies(MovieID.Text);
             MessageBox.Show("Data has been Deleted !! ");
             // showing movie list after deleting
-            dataGridView.DataSource = vsclass.showmovies();
+            dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
             // all text boxes with null
             CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
@@ -223,6 +235,7 @@ namespace Video_Store
         }
         private void ReturnMBtn_Click(object sender, EventArgs e)
         {
+            // Return movie
             string ReturnMovieID = MovieID.Text;
             if (ReturnMovieID == "")
             {
@@ -231,20 +244,22 @@ namespace Video_Store
             string ReturnCustID = CustID.Text;
             string NewDateReturned = "";
             // setting unchanged variables to read/write again
-
-            int NewRMID = Convert.ToInt32(RMID.Text);
-            Console.WriteLine(NewRMID);
-            string ReturnMovieIDFK = dataGridView.Rows[NewRMID].Cells[1].Value.ToString();
-            string ReturnCustIDFK = dataGridView.Rows[NewRMID].Cells[3].Value.ToString();
-            string ReturnDateRented = dataGridView.Rows[NewRMID].Cells[5].Value.ToString();
-            string DateReturned = dataGridView.Rows[NewRMID].Cells[6].Value.ToString();
-            Console.WriteLine(DateReturned);
-            if (DateReturned != "")
+            if (RMID.Text != "")
             {
-                MessageBox.Show("Already returned.");
-            }
-            vsclass.returnmovies(RMID.Text, ReturnMovieID, ReturnCustID, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
+                int NewRMID = Convert.ToInt32(RMID.Text) - 1;
+                string ReturnMovieIDFK = dataGridView.Rows[NewRMID].Cells[1].Value.ToString();
+                string ReturnCustIDFK = dataGridView.Rows[NewRMID].Cells[3].Value.ToString();
+                string ReturnDateRented = dataGridView.Rows[NewRMID].Cells[5].Value.ToString();
+                string DateReturned = dataGridView.Rows[NewRMID].Cells[6].Value.ToString();
+                // already returned or not
+                Console.WriteLine(DateReturned);
+                if (DateReturned != "")
+                {
+                    MessageBox.Show("Already returned.");
+                }
 
+                vsclass.returnMovies(RMID.Text, ReturnMovieID, ReturnCustIDFK, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
+            }
 
             /*            vsclass.returnmovies(ReturnMovieID, ReturnCustID);
                     }
@@ -267,6 +282,13 @@ namespace Video_Store
 
         }
 
+        private void RentedPersonBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            // Show rented movie list
+            ReturnMBtn.Enabled = true;
+            IssueMBtn.Enabled = true;
+            dataGridView.DataSource = vsclass.rentedPerson();
+        }
     }
 }
 
