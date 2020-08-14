@@ -374,12 +374,12 @@ namespace Video_Store
         {
             con.Open();
             NewDateIssued = DateTime.Now.ToString();
-            string issueMovies = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented, DateReturned) VALUES (@MovieIDFK, @CustIDFK, @DateRented, @DateReturned)";
+            string issueMovies = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES (@MovieIDFK, @CustIDFK, @DateRented)";
             SqlCommand newdata = new SqlCommand(issueMovies, con);
             newdata.Parameters.AddWithValue("@MovieIDFK", IssueMovieID);
             newdata.Parameters.AddWithValue("@CustIDFK", IssueCustID);
             newdata.Parameters.AddWithValue("@DateRented", NewDateIssued);
-            newdata.Parameters.AddWithValue("@DateReturned", "");
+    //        newdata.Parameters.AddWithValue("@DateReturned", "");
             newdata.ExecuteNonQuery(); //Run the QueryCustomer
             con.Close();
             DataTable issued = CreateTable3();
