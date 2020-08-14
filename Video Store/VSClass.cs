@@ -365,43 +365,43 @@ namespace Video_Store
             return rented;
         }
         // Method for rented movies
-    /*    public DataTable rentedPerson()
-        {
-            DataTable rentedperson = CreateTable3();
-            rentedperson = ReadData7(rentedperson);
-            return rentedperson;
-        }
-        private DataTable ReadData7(DataTable rentedperson)
-        {
-            string queryString = "SELECT COUNT(ID) FROM RentedMovies where CustIDFK=@CustIDFK";
-            SqlConnection con = new SqlConnection(conString);
-
-            SqlCommand Command = new SqlCommand(queryString, con);
-            con.Open();
-            string rentedpersonID = Command.ExecuteScalar().ToString();
-
-            Console.WriteLine(rentedpersonID);
-            
-            string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID order by RentedMovies.RMID";
-            SqlCommand command = new SqlCommand(query, con);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+        /*    public DataTable rentedPerson()
             {
-                rentedperson.Rows.Add(
-                    reader["RMID"],
-                    reader["MovieID"],
-                    reader["Title"],
-                    reader["CustID"],
-                    reader["Rental_Cost"],
-                    reader["DateRented"],
-                    reader["DateReturned"]
-                    );
+                DataTable rentedperson = CreateTable3();
+                rentedperson = ReadData7(rentedperson);
+                return rentedperson;
             }
+            private DataTable ReadData7(DataTable rentedperson)
+            {
+                string queryString = "SELECT COUNT(ID) FROM RentedMovies where CustIDFK=@CustIDFK";
+                SqlConnection con = new SqlConnection(conString);
 
-            reader.Close();
-            con.Close();
-            return rentedperson;
-        }*/
+                SqlCommand Command = new SqlCommand(queryString, con);
+                con.Open();
+                string rentedpersonID = Command.ExecuteScalar().ToString();
+
+                Console.WriteLine(rentedpersonID);
+
+                string query = "Select * from RentedMovies, Movies, Customer Where RentedMovies.MovieIDFK = Movies.MovieID and RentedMovies.CustIDFK = Customer.CustID order by RentedMovies.RMID";
+                SqlCommand command = new SqlCommand(query, con);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    rentedperson.Rows.Add(
+                        reader["RMID"],
+                        reader["MovieID"],
+                        reader["Title"],
+                        reader["CustID"],
+                        reader["Rental_Cost"],
+                        reader["DateRented"],
+                        reader["DateReturned"]
+                        );
+                }
+
+                reader.Close();
+                con.Close();
+                return rentedperson;
+            }*/
 
 
         /*        // Method - Issue a movie
@@ -455,7 +455,7 @@ namespace Video_Store
                     return movies;
                     issued = ReadData7(issued);
                     return issued;*/
-    }
+    
     /*    private DataTable ReadData7(DataTable issued)
         {
             con.Open();
@@ -497,7 +497,7 @@ namespace Video_Store
             movies = ReadData2(movies);
             return movies;
         }*/
-
+    }
 }
 
 
