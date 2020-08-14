@@ -341,10 +341,10 @@ namespace Video_Store
         public DataTable returnMovies(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
         {
             DataTable returned = CreateTable3();
-            returned = ReadData8(newRMID, ReturnMovieID, ReturnCustID, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
+            returned = ReadData6(newRMID, ReturnMovieID, ReturnCustID, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
             return returned;
         }
-        private DataTable ReadData8(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
+        private DataTable ReadData6(string newRMID, string ReturnMovieID, string ReturnCustID, string ReturnMovieIDFK, string ReturnDateRented, string NewDateReturned)
         {
             con.Open();
             NewDateReturned = DateTime.Now.ToString();
@@ -365,13 +365,13 @@ namespace Video_Store
             return rented;
         }
         // Method for rented movies
-        public DataTable rentedPerson()
+    /*    public DataTable rentedPerson()
         {
             DataTable rentedperson = CreateTable3();
-            rentedperson = ReadData9(rentedperson);
+            rentedperson = ReadData7(rentedperson);
             return rentedperson;
         }
-        private DataTable ReadData9(DataTable rentedperson)
+        private DataTable ReadData7(DataTable rentedperson)
         {
             string queryString = "SELECT COUNT(ID) FROM RentedMovies where CustIDFK=@CustIDFK";
             SqlConnection con = new SqlConnection(conString);
@@ -401,7 +401,7 @@ namespace Video_Store
             reader.Close();
             con.Close();
             return rentedperson;
-        }
+        }*/
 
 
         /*        // Method - Issue a movie
@@ -453,10 +453,10 @@ namespace Video_Store
             /*        DataTable movies = CreateTable2();
                     movies = ReadData2(movies);
                     return movies;
-                    issued = ReadData6(issued);
+                    issued = ReadData7(issued);
                     return issued;*/
     }
-    /*    private DataTable ReadData6(DataTable issued)
+    /*    private DataTable ReadData7(DataTable issued)
         {
             con.Open();
 

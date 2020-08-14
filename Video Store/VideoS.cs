@@ -261,34 +261,8 @@ namespace Video_Store
                 vsclass.returnMovies(RMID.Text, ReturnMovieID, ReturnCustIDFK, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
             }
 
-            /*            vsclass.returnmovies(ReturnMovieID, ReturnCustID);
-                    }
-                    private void IssueMBtn_Click(object sender, EventArgs e)
-                    {
-                        string IssueMovieIDFK = MovieID.Text;
-                        if (IssueMovieIDFK == "")
-                        {
-                            MessageBox.Show("Choose Movie from movie list pressing movie button on top");
-                        }
-                        string IssueCustIDFK = CustID.Text;
-                        if (IssueCustIDFK == "")
-                        {
-                            MessageBox.Show("Input customer ID!");
-                        }
-                        //        string DateRented = Now();
-                        //        vsclass.issuemovies(IssueMovieIDFK, IssueCustIDFK, DateRented);
-                    }*/
-
-
         }
 
-        private void RentedPersonBtn_CheckedChanged(object sender, EventArgs e)
-        {
-            // Show rented movie list
-            ReturnMBtn.Enabled = true;
-            IssueMBtn.Enabled = true;
-            dataGridView.DataSource = vsclass.rentedPerson();
-        }
     }
 }
 

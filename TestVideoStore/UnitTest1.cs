@@ -10,10 +10,10 @@ namespace TestVideoStore
     {
 
         [TestMethod]
-        public void ConnectAndDisconnectFromDatabase()
+        public void ConnectFromDatabase()
         {
-            VSClass testClass = new VSClass();
-            SqlConnection con = new SqlConnection(testClass.ReturnConnectionString());
+            VSClass test = new VSClass();
+            SqlConnection con = new SqlConnection(test.ReturnConnectionString());
 
             con.Open();
 
@@ -23,10 +23,10 @@ namespace TestVideoStore
         }
 
         [TestMethod]
-        public void SecondTestMethod()
+        public void DisconnectFromDatabase()
         {
-            VSClass testClass = new VSClass();
-            SqlConnection con = new SqlConnection(testClass.ReturnConnectionString());
+            VSClass test = new VSClass();
+            SqlConnection con = new SqlConnection(test.ReturnConnectionString());
 
             con.Open();
 
