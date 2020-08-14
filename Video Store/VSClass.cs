@@ -379,7 +379,6 @@ namespace Video_Store
             newdata.Parameters.AddWithValue("@MovieIDFK", IssueMovieID);
             newdata.Parameters.AddWithValue("@CustIDFK", IssueCustID);
             newdata.Parameters.AddWithValue("@DateRented", NewDateIssued);
-    //        newdata.Parameters.AddWithValue("@DateReturned", "");
             newdata.ExecuteNonQuery(); //Run the QueryCustomer
             con.Close();
             DataTable issued = CreateTable3();
