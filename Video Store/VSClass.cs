@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,21 @@ namespace Video_Store
 {
     public class VSClass
     {
-        private string conString = @"Data Source=LAPTOP-J9EIJALS\SQLEXPRESS;Initial Catalog=VideoRental;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public SqlConnection con;
+        private readonly string conString = @"Data Source=LAPTOP-J9EIJALS\SQLEXPRESS;Initial Catalog=VideoRental;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public readonly SqlConnection con;
 
         // Constructor
         public VSClass()
         {
             con = new SqlConnection(conString);
+        }
+
+        public string ReturnConnectionString()
+        {
+            return conString;
+            //why we did this? because we wanted the conString to be private. But at the same time
+            // we wanted to test it in test class
+            //since this function is public, we can have access to the conString with this method!
         }
 
         // Method for showing customer list
