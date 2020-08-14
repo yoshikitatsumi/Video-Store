@@ -151,6 +151,7 @@
             this.IssueMBtn.TabIndex = 8;
             this.IssueMBtn.Text = "Issue Movie";
             this.IssueMBtn.UseVisualStyleBackColor = true;
+            this.IssueMBtn.Click += new System.EventHandler(this.IssueMBtn_Click);
             // 
             // CustID
             // 

@@ -38,7 +38,7 @@ namespace Video_Store
         {
             // Show movie list
             ReturnMBtn.Enabled = false;
-            IssueMBtn.Enabled = false;
+            IssueMBtn.Enabled = true;
             dataGridView.DataSource = vsclass.showMovies();
             data = "movie"; // gridview data to text boxes control
         }
@@ -239,7 +239,7 @@ namespace Video_Store
             string ReturnMovieID = MovieID.Text;
             if (ReturnMovieID == "")
             {
-                MessageBox.Show("Choose Movie from Movie list pressing Movie button on top.");
+                MessageBox.Show("Choose Movie from Rented Movie list pressing Rentals button on top.");
             }
             string ReturnCustID = CustID.Text;
             string NewDateReturned = "";
@@ -252,7 +252,6 @@ namespace Video_Store
                 string ReturnDateRented = dataGridView.Rows[NewRMID].Cells[5].Value.ToString();
                 string DateReturned = dataGridView.Rows[NewRMID].Cells[6].Value.ToString();
                 // already returned or not
-                Console.WriteLine(DateReturned);
                 if (DateReturned != "")
                 {
                     MessageBox.Show("Already returned.");
@@ -263,6 +262,30 @@ namespace Video_Store
 
         }
 
+        private void IssueMBtn_Click(object sender, EventArgs e)
+        {
+            // issue movie
+            string IssueMovieID = MovieID.Text;
+            if (IssueMovieID == "")
+            {
+                MessageBox.Show("Choose Movie from Movie list pressing Movie button on top.");
+            }
+            string IssueCustID = CustID.Text;
+            if (IssueCustID == "")
+            {
+                MessageBox.Show("Input customers ID in Customer ID box.");
+            }
+                string NewDateIssued = "";
+                // setting unchanged variables to read/write again
+
+                if (NewDateIssued != "")
+                {
+                    MessageBox.Show("Already issued.");
+                }
+
+                vsclass.issueMovies(NewDateIssued, IssueMovieID, IssueCustID);
+            
+        }
     }
 }
 
