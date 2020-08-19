@@ -146,9 +146,6 @@ namespace Video_Store
             // showing customer list with addition
             dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void AddMBtn_Click(object sender, EventArgs e)
         {
@@ -163,9 +160,6 @@ namespace Video_Store
             // showing movie list with addition
             dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void UpdateCBtn_Click(object sender, EventArgs e)
         {
@@ -180,9 +174,6 @@ namespace Video_Store
             // showing customer list with update
             dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void UpdateMBtn_Click(object sender, EventArgs e)
         {
@@ -205,9 +196,6 @@ namespace Video_Store
             // showing customer list with update
             dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void DeleteCBtn_Click(object sender, EventArgs e)
         {
@@ -217,9 +205,6 @@ namespace Video_Store
             // showing customer list after deleting
             dataGridView.DataSource = vsclass.showCustomer();
             data = "cust";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void DeleteMBtn_Click(object sender, EventArgs e)
         {
@@ -229,9 +214,6 @@ namespace Video_Store
             // showing movie list after deleting
             dataGridView.DataSource = vsclass.showMovies();
             data = "movie";
-            // all text boxes with null
-            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
-            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void ReturnMBtn_Click(object sender, EventArgs e)
         {
@@ -256,7 +238,6 @@ namespace Video_Store
                 {
                     MessageBox.Show("Already returned.");
                 }
-
                 vsclass.returnMovies(RMID.Text, ReturnMovieID, ReturnCustIDFK, ReturnMovieIDFK, ReturnDateRented, NewDateReturned);
             }
 
@@ -275,16 +256,13 @@ namespace Video_Store
             {
                 MessageBox.Show("Input customers ID in Customer ID box.");
             }
-                string NewDateIssued = "";
-                // setting unchanged variables to read/write again
-
-                if (NewDateIssued != "")
-                {
-                    MessageBox.Show("Already issued.");
-                }
-
-                vsclass.issueMovies(NewDateIssued, IssueMovieID, IssueCustID);
-            
+            string NewDateIssued = "";
+            // setting unchanged variables to read/write again
+            if (NewDateIssued != "")
+            {
+                MessageBox.Show("Already issued.");
+            }
+            vsclass.issueMovies(NewDateIssued, IssueMovieID, IssueCustID);
         }
     }
 }
