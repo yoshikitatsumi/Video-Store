@@ -66,7 +66,6 @@ namespace Video_Store
                 CLName.Text = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                 CAddress.Text = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
                 CPhone.Text = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
-                MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
             }
             // Movie list with price setting
             else if (data == "movie")
@@ -85,7 +84,6 @@ namespace Video_Store
                 MGenre.Text = RMGenre;
                 string MCopies = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
                 string MPlot = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
-                CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
                 // handling for year, blank, 2000-2010 etc.
                 if (ReleaseYear == "")
                 {
@@ -111,6 +109,9 @@ namespace Video_Store
             // Rented movie list
             else if (data == "rented")
             {
+                // all text boxes with null
+                CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
+                MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
                 //pass data to the text boxes
                 RMID.Text = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
                 MovieID.Text = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -125,6 +126,9 @@ namespace Video_Store
             ReturnMBtn.Enabled = false;
             IssueMBtn.Enabled = false;
             dataGridView.DataSource = vsclass.showAllrented();
+            // all text boxes with null
+            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
+            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void OutRBtn_CheckedChanged(object sender, EventArgs e)
         {
@@ -132,6 +136,9 @@ namespace Video_Store
             ReturnMBtn.Enabled = false;
             IssueMBtn.Enabled = false;
             dataGridView.DataSource = vsclass.showOutrented();
+            // all text boxes with null
+            CustID.Text = ""; CFName.Text = ""; CLName.Text = ""; CAddress.Text = ""; CPhone.Text = "";
+            MovieID.Text = ""; MTitle.Text = ""; MGenre.Text = ""; MCost.Text = ""; MRating.Text = "";
         }
         private void AddCBtn_Click(object sender, EventArgs e)
         {
