@@ -261,7 +261,7 @@ namespace Video_Store
             string IssueCustID = CustID.Text;
             if (IssueCustID == "")
             {
-                MessageBox.Show("Input customers ID in Customer ID box.");
+                MessageBox.Show("Choose Customer from Customer list pressing Customer button on top.");
             }
             string NewDateIssued = "";
             // setting unchanged variables to read/write again
